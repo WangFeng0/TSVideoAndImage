@@ -9,10 +9,14 @@
 #import "TSVideoPlayback.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIImageView+WebCache.h"
+#import "SVProgressHUD.h"
 
 @interface TSVideoPlayback ()<UIScrollViewDelegate>
 {
     BOOL isVideos;
+    BOOL isReadToPlay;
+    BOOL isEndPlay;
+    BOOL isCliakVIew;
     NSInteger imgIndex;
 }
 @property (strong, nonatomic)AVPlayer *myPlayer;//播放器
@@ -25,7 +29,7 @@
 @property (nonatomic,strong) UIButton *videoBtn;//切换到视频
 @property (nonatomic,strong) UIButton *imgBtn;//切换到图片
 @property (nonatomic,strong) NSArray *dataArray;
-
+@property (nonatomic,strong) UIImageView *placeholderImg;//占位图img
 
 @end
 
@@ -47,11 +51,11 @@
     self.scrolView.contentSize = CGSizeMake(self.dataArray.count*self.frame.size.width, self.frame.size.height);
     isVideos = isVideo;
     if (isVideo) {
-        [self.playBtn setHidden:NO];
+//        [self.playBtn setHidden:NO];
         [self.videoBtn setHidden:NO];
         [self.imgBtn setHidden:NO];
     }else{
-        [self.playBtn setHidden:YES];
+//        [self.playBtn setHidden:YES];
         [self.videoBtn setHidden:YES];
         [self.imgBtn setHidden:YES];
     }
@@ -66,6 +70,8 @@
                 self.playerLayer.frame = CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height);
                 [self.scrolView.layer addSublayer:self.playerLayer];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+                //通过KVO来观察status属性的变化，来获得播放之前的错误信息
+                [self.item addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
             }
             else{
                 UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
@@ -74,6 +80,8 @@
                 [self.scrolView addSubview:img];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTapClick)];
                 [img addGestureRecognizer:tap];
+                
+                [SVProgressHUD showWithStatus:@""];
             }
             
             if (_dataArray.count > 1) {
@@ -100,7 +108,40 @@
 /** 视频播放结束 */
 - (void)videoPlayEnd:(NSNotification *)notic
 {
-    [self.playBtn setHidden:YES];
+//    [self.playBtn setHidden:YES];
+    if (!self.myPlayer) {
+        return;
+    }
+    [self.playBtn setSelected:NO];
+    [self.playBtn setHidden:NO];
+    isEndPlay = YES;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:
+(NSDictionary<NSString *,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"status"]) {
+        //取出status的新值
+        AVPlayerItemStatus status = [change[NSKeyValueChangeNewKey]intValue];
+        switch (status) {
+            case AVPlayerItemStatusFailed:
+                NSLog(@"item 有误");
+                isReadToPlay = NO;
+                break;
+            case AVPlayerItemStatusReadyToPlay:
+                NSLog(@"准好播放了");
+                isReadToPlay = YES;
+                [SVProgressHUD dismiss];
+                break;
+            case AVPlayerItemStatusUnknown:
+                NSLog(@"视频资源出现未知错误");
+                isReadToPlay = NO;
+                break;
+            default:
+                break;
+        }
+    }
+    //移除监听（观察者）
+    [object removeObserver:self forKeyPath:@"status"];
 }
 
 -(void)clearCache
@@ -114,10 +155,30 @@
 -(void)playClick:(UIButton *)btn
 {
     btn.selected = !btn.selected;
-    if (btn.selected) {
-        [self.myPlayer play];
+    if (isReadToPlay) {
+        if (btn.selected) {
+            if (isEndPlay) {
+                CGFloat a = 0;
+                NSInteger dragedSeconds = floorf(a);
+                CMTime dragedCMTime = CMTimeMake(dragedSeconds, 1);
+                [self.myPlayer seekToTime:dragedCMTime];
+                [self.myPlayer play];
+                isEndPlay = NO;
+            }else{
+                [self.myPlayer play];
+            }
+        }else{
+            [self.myPlayer pause];
+        }
+    }
+}
+-(void)playShowAndHidden
+{
+    isCliakVIew = !isCliakVIew;
+    if (isCliakVIew) {
+        [self.playBtn setHidden:YES];
     }else{
-        [self.myPlayer pause];
+        [self.playBtn setHidden:NO];
     }
 }
 - (void)changeBtnClick:(UIButton *)btn{
@@ -166,9 +227,11 @@
     if (isVideos) {
         if (self.scrolView.contentOffset.x < self.frame.size.width) {
             self.indexLab.hidden = YES;
+            [self.playBtn setHidden:NO];
         }
         else{
             self.indexLab.hidden = NO;
+            [self.playBtn setHidden:YES];
         }
         self.indexLab.text = [NSString stringWithFormat:@"%d/%d",(int)index,(int)self.dataArray.count - 1];
     }else{
@@ -181,16 +244,16 @@
         if (self.scrolView.contentOffset.x < self.frame.size.width) {
             self.videoBtn.selected = YES;
             self.imgBtn.selected = NO;
-            [self.playBtn setHidden:NO];
+//            [self.playBtn setHidden:NO];
             self.videoBtn.backgroundColor = [UIColor orangeColor];
             self.imgBtn.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
         } else{
             self.videoBtn.selected = NO;
             self.imgBtn.selected = YES;
-            [self.playBtn setHidden:YES];
+//            [self.playBtn setHidden:YES];
             self.videoBtn.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
             self.imgBtn.backgroundColor = [UIColor orangeColor];
-            self.playBtn.selected = NO;
+//            self.playBtn.selected = NO;
             [self.myPlayer pause];
         }
     }else{
@@ -202,17 +265,29 @@
 -(void)initialControlUnit
 {
     isVideos = NO;
+    isEndPlay = NO;
     _scrolView = [[UIScrollView alloc]init];
     _scrolView.pagingEnabled  = YES;
     _scrolView.delegate = self;
     _scrolView.showsVerticalScrollIndicator = NO;
     _scrolView.showsHorizontalScrollIndicator = NO;
+    _scrolView.userInteractionEnabled = YES;
     [self addSubview:_scrolView];
     self.scrolView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playShowAndHidden)];
+    [self.scrolView addGestureRecognizer:tap];
+    
+    self.placeholderImg = [[UIImageView alloc]init];
+    self.placeholderImg.image = [UIImage imageNamed:@"icon_play"];
+    self.placeholderImg.contentMode = UIViewContentModeScaleAspectFill;
+    self.placeholderImg.userInteractionEnabled = YES;
+    self.placeholderImg.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self.scrolView addSubview:self.placeholderImg];
     
     _playBtn = [[UIButton alloc]init];
     _playBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_playBtn setImage:[UIImage imageNamed:@"icon_video"] forState:UIControlStateNormal];
+    [_playBtn setImage:[UIImage imageNamed:@"icon_play"] forState:UIControlStateSelected];
     [self addSubview:_playBtn];
     self.playBtn.frame = CGRectMake((self.frame.size.width - 60)/2.0, (self.frame.size.height - 60)/2.0, 60, 60);
     

@@ -47,6 +47,15 @@
 		B653750C20E8A9FC00FD2F77 /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B65374EB20E8A9FC00FD2F77 /* UIView+WebCache.m */; };
 		B653750D20E8A9FC00FD2F77 /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B65374ED20E8A9FC00FD2F77 /* SDWebImageImageIOCoder.m */; };
 		B653750E20E8A9FC00FD2F77 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B65374F120E8A9FC00FD2F77 /* UIButton+WebCache.m */; };
+		B679B89D20F2F5E9003AD759 /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B679B89B20F2F5E8003AD759 /* icon_play@2x.png */; };
+		B679B89E20F2F5E9003AD759 /* icon_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B679B89C20F2F5E8003AD759 /* icon_play@3x.png */; };
+		B679B8AC20F3042F003AD759 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B679B8A020F3042F003AD759 /* LICENSE */; };
+		B679B8AD20F3042F003AD759 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B679B8A220F3042F003AD759 /* SVRadialGradientLayer.m */; };
+		B679B8AE20F3042F003AD759 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B679B8A520F3042F003AD759 /* SVProgressAnimatedView.m */; };
+		B679B8AF20F3042F003AD759 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B679B8A720F3042F003AD759 /* SVProgressHUD.m */; };
+		B679B8B020F3042F003AD759 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B679B8A820F3042F003AD759 /* SVIndefiniteAnimatedView.m */; };
+		B679B8B120F3042F003AD759 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B679B8A920F3042F003AD759 /* SVProgressHUD.bundle */; };
+		B679B8B220F3042F003AD759 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B679B8AB20F3042F003AD759 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +153,19 @@
 		B65374F020E8A9FC00FD2F77 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		B65374F120E8A9FC00FD2F77 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		B65374F220E8A9FC00FD2F77 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		B679B89B20F2F5E8003AD759 /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_play@2x.png"; sourceTree = "<group>"; };
+		B679B89C20F2F5E8003AD759 /* icon_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_play@3x.png"; sourceTree = "<group>"; };
+		B679B8A020F3042F003AD759 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B679B8A220F3042F003AD759 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		B679B8A320F3042F003AD759 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		B679B8A420F3042F003AD759 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		B679B8A520F3042F003AD759 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		B679B8A620F3042F003AD759 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		B679B8A720F3042F003AD759 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		B679B8A820F3042F003AD759 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		B679B8A920F3042F003AD759 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		B679B8AA20F3042F003AD759 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		B679B8AB20F3042F003AD759 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,8 +222,11 @@
 				B653746020E7921800FD2F77 /* ViewController.m */,
 				B6289FBF20EA045500F74E19 /* TSHomeViewController.h */,
 				B6289FC020EA045500F74E19 /* TSHomeViewController.m */,
+				B679B89B20F2F5E8003AD759 /* icon_play@2x.png */,
+				B679B89C20F2F5E8003AD759 /* icon_play@3x.png */,
 				B653749120E89ABA00FD2F77 /* icon_video@2x.png */,
 				B653749220E89ABA00FD2F77 /* icon_video@3x.png */,
+				B679B89F20F3042F003AD759 /* SVProgressHUD */,
 				B65374BA20E8A9FC00FD2F77 /* SDWebImage */,
 				B653745C20E7921800FD2F77 /* AppDelegate.h */,
 				B653745D20E7921800FD2F77 /* AppDelegate.m */,
@@ -300,6 +325,32 @@
 				B65374F220E8A9FC00FD2F77 /* UIImage+GIF.h */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		B679B89F20F3042F003AD759 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				B679B8A020F3042F003AD759 /* LICENSE */,
+				B679B8A120F3042F003AD759 /* SVProgressHUD */,
+				B679B8AB20F3042F003AD759 /* README.md */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		B679B8A120F3042F003AD759 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				B679B8A220F3042F003AD759 /* SVRadialGradientLayer.m */,
+				B679B8A320F3042F003AD759 /* SVIndefiniteAnimatedView.h */,
+				B679B8A420F3042F003AD759 /* SVProgressHUD.h */,
+				B679B8A520F3042F003AD759 /* SVProgressAnimatedView.m */,
+				B679B8A620F3042F003AD759 /* SVRadialGradientLayer.h */,
+				B679B8A720F3042F003AD759 /* SVProgressHUD.m */,
+				B679B8A820F3042F003AD759 /* SVIndefiniteAnimatedView.m */,
+				B679B8A920F3042F003AD759 /* SVProgressHUD.bundle */,
+				B679B8AA20F3042F003AD759 /* SVProgressAnimatedView.h */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,10 +459,15 @@
 				B65374F320E8A9FC00FD2F77 /* LICENSE in Resources */,
 				B653746920E7921A00FD2F77 /* LaunchScreen.storyboard in Resources */,
 				B653749320E89ABA00FD2F77 /* icon_video@2x.png in Resources */,
+				B679B89D20F2F5E9003AD759 /* icon_play@2x.png in Resources */,
+				B679B8AC20F3042F003AD759 /* LICENSE in Resources */,
 				B65374F420E8A9FC00FD2F77 /* README.md in Resources */,
+				B679B8B220F3042F003AD759 /* README.md in Resources */,
+				B679B89E20F2F5E9003AD759 /* icon_play@3x.png in Resources */,
 				B653749420E89ABA00FD2F77 /* icon_video@3x.png in Resources */,
 				B653746620E7921A00FD2F77 /* Assets.xcassets in Resources */,
 				B653746420E7921800FD2F77 /* Main.storyboard in Resources */,
+				B679B8B120F3042F003AD759 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,8 +494,11 @@
 			files = (
 				B65374FB20E8A9FC00FD2F77 /* UIImage+GIF.m in Sources */,
 				B653750D20E8A9FC00FD2F77 /* SDWebImageImageIOCoder.m in Sources */,
+				B679B8AE20F3042F003AD759 /* SVProgressAnimatedView.m in Sources */,
 				B653750020E8A9FC00FD2F77 /* SDWebImageCoder.m in Sources */,
 				B653750C20E8A9FC00FD2F77 /* UIView+WebCache.m in Sources */,
+				B679B8B020F3042F003AD759 /* SVIndefiniteAnimatedView.m in Sources */,
+				B679B8AF20F3042F003AD759 /* SVProgressHUD.m in Sources */,
 				B65374F620E8A9FC00FD2F77 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B65374F720E8A9FC00FD2F77 /* SDWebImageFrame.m in Sources */,
 				B653746120E7921800FD2F77 /* ViewController.m in Sources */,
@@ -455,6 +514,7 @@
 				B653749020E895AD00FD2F77 /* TSVideoPlayback.m in Sources */,
 				B65374FA20E8A9FC00FD2F77 /* SDWebImageDownloader.m in Sources */,
 				B653750820E8A9FC00FD2F77 /* NSImage+WebCache.m in Sources */,
+				B679B8AD20F3042F003AD759 /* SVRadialGradientLayer.m in Sources */,
 				B653750B20E8A9FC00FD2F77 /* UIView+WebCacheOperation.m in Sources */,
 				B65374F520E8A9FC00FD2F77 /* SDWebImageManager.m in Sources */,
 				B653746C20E7921A00FD2F77 /* main.m in Sources */,
