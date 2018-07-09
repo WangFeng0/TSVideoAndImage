@@ -255,6 +255,7 @@
             self.imgBtn.backgroundColor = [UIColor orangeColor];
 //            self.playBtn.selected = NO;
             [self.myPlayer pause];
+            [self.playBtn setSelected:NO];
         }
     }else{
         return;
