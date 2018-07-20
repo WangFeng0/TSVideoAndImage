@@ -149,6 +149,7 @@
     [self.playerLayer removeFromSuperlayer];
     self.playerLayer = nil;
     self.myPlayer = nil;
+    [self.myPlayer replaceCurrentItemWithPlayerItem:nil];
 }
 
 #pragma mark - action
