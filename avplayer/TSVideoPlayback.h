@@ -26,7 +26,7 @@
  */
 -(void)setWithIsVideo:(BOOL)isVideo andDataArray:(NSArray *)array;
 
-//清除缓存
+//清除缓存（必须写）
 -(void)clearCache;
 
 @end

@@ -17,7 +17,7 @@
 @property (strong, nonatomic)AVPlayerItem *item;//播放单元
 @property (strong, nonatomic)AVPlayerLayer *playerLayer;//播放界面（layer
 @property (nonatomic,assign) TSBANNERTYPE type;
-
+@property (nonatomic,strong) TSVideoPlayback *video;
 
 @end
 
@@ -38,16 +38,16 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    TSVideoPlayback *video = [[TSVideoPlayback alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 300) ];
-    video.delegate = self;
+    self.video = [[TSVideoPlayback alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 300) ];
+    self.video.delegate = self;
     if (self.type == TSBANNERTYPEIMAGE) {
         self.title = @"纯图片详情";
-        [video setWithIsVideo:NO andDataArray:[self imgArray]];
+        [self.video setWithIsVideo:NO andDataArray:[self imgArray]];
     }else{
         self.title = @"视频图片详情";
-        [video setWithIsVideo:YES andDataArray:[self bannerArray]];
+        [self.video setWithIsVideo:YES andDataArray:[self bannerArray]];
     }
-    [self.view addSubview:video];
+    [self.view addSubview:self.video];
 }
 
 -(NSArray *)bannerArray
@@ -77,4 +77,9 @@
     return self;
 }
 
+//清除缓存必须写
+-(void)dealloc
+{
+    [self.video clearCache];
+}
 @end
