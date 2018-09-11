@@ -216,16 +216,11 @@
 		B653745B20E7921800FD2F77 /* avplayer */ = {
 			isa = PBXGroup;
 			children = (
-				B653748E20E895AC00FD2F77 /* TSVideoPlayback.h */,
-				B653748F20E895AC00FD2F77 /* TSVideoPlayback.m */,
+				B6C7CDFC2147A1C90064C469 /* detailVIdeo */,
 				B653745F20E7921800FD2F77 /* ViewController.h */,
 				B653746020E7921800FD2F77 /* ViewController.m */,
 				B6289FBF20EA045500F74E19 /* TSHomeViewController.h */,
 				B6289FC020EA045500F74E19 /* TSHomeViewController.m */,
-				B679B89B20F2F5E8003AD759 /* icon_play@2x.png */,
-				B679B89C20F2F5E8003AD759 /* icon_play@3x.png */,
-				B653749120E89ABA00FD2F77 /* icon_video@2x.png */,
-				B653749220E89ABA00FD2F77 /* icon_video@3x.png */,
 				B679B89F20F3042F003AD759 /* SVProgressHUD */,
 				B65374BA20E8A9FC00FD2F77 /* SDWebImage */,
 				B653745C20E7921800FD2F77 /* AppDelegate.h */,
@@ -351,6 +346,19 @@
 				B679B8AA20F3042F003AD759 /* SVProgressAnimatedView.h */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		B6C7CDFC2147A1C90064C469 /* detailVIdeo */ = {
+			isa = PBXGroup;
+			children = (
+				B653748E20E895AC00FD2F77 /* TSVideoPlayback.h */,
+				B653748F20E895AC00FD2F77 /* TSVideoPlayback.m */,
+				B679B89B20F2F5E8003AD759 /* icon_play@2x.png */,
+				B679B89C20F2F5E8003AD759 /* icon_play@3x.png */,
+				B653749120E89ABA00FD2F77 /* icon_video@2x.png */,
+				B653749220E89ABA00FD2F77 /* icon_video@3x.png */,
+			);
+			path = detailVIdeo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
