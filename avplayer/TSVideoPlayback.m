@@ -13,7 +13,6 @@
 
 @interface TSVideoPlayback ()<UIScrollViewDelegate>
 {
-    BOOL isVideos;
     BOOL isReadToPlay;
     BOOL isEndPlay;
     BOOL isCliakVIew;
@@ -44,23 +43,23 @@
     return self;
 }
 
--(void)setWithIsVideo:(BOOL)isVideo andDataArray:(NSArray *)array
+-(void)setWithIsVideo:(TSDETAILTYPE)type andDataArray:(NSArray *)array
 {
     self.dataArray = array;
     
     self.scrolView.contentSize = CGSizeMake(self.dataArray.count*self.frame.size.width, self.frame.size.height);
-    isVideos = isVideo;
-    if (isVideo) {
-//        [self.playBtn setHidden:NO];
+    self.type = type;
+    if (type == TSDETAILTYPEVIDEO) {
+        [self.playBtn setHidden:NO];
         [self.videoBtn setHidden:NO];
         [self.imgBtn setHidden:NO];
     }else{
-//        [self.playBtn setHidden:YES];
+        [self.playBtn setHidden:YES];
         [self.videoBtn setHidden:YES];
         [self.imgBtn setHidden:YES];
     }
     for (int i = 0; i < _dataArray.count; i ++) {
-        if (isVideo) {
+        if (type == TSDETAILTYPEVIDEO) {
             if (i == 0) {
                 NSURL *url = [NSURL URLWithString:self.dataArray[0]];
                 self.item = [AVPlayerItem playerItemWithURL:url];
@@ -196,6 +195,9 @@
         }
     }
     else{
+        if (self.dataArray.count < 2) {
+            return;
+        }
         self.videoBtn.selected = NO;
         self.imgBtn.selected = YES;
         
@@ -214,7 +216,7 @@
 -(void)imgTapClick
 {
     if ([self.delegate respondsToSelector:@selector(videoView:didSelectItemAtIndexPath:)]) {
-        if (isVideos) {
+        if (self.type == TSDETAILTYPEVIDEO) {
             [self.delegate videoView:self didSelectItemAtIndexPath:imgIndex];
         }else{
             [self.delegate videoView:self didSelectItemAtIndexPath:imgIndex+1];
@@ -225,7 +227,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSInteger index = scrollView.contentOffset.x/self.bounds.size.width;
     imgIndex = index;
-    if (isVideos) {
+    if (self.type == TSDETAILTYPEVIDEO) {
         if (self.scrolView.contentOffset.x < self.frame.size.width) {
             self.indexLab.hidden = YES;
             [self.playBtn setHidden:NO];
@@ -241,20 +243,17 @@
     }
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (isVideos) {
+    if (self.type == TSDETAILTYPEVIDEO) {
         if (self.scrolView.contentOffset.x < self.frame.size.width) {
             self.videoBtn.selected = YES;
             self.imgBtn.selected = NO;
-//            [self.playBtn setHidden:NO];
             self.videoBtn.backgroundColor = [UIColor orangeColor];
             self.imgBtn.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
         } else{
             self.videoBtn.selected = NO;
             self.imgBtn.selected = YES;
-//            [self.playBtn setHidden:YES];
             self.videoBtn.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
             self.imgBtn.backgroundColor = [UIColor orangeColor];
-//            self.playBtn.selected = NO;
             [self.myPlayer pause];
             [self.playBtn setSelected:NO];
         }
@@ -266,7 +265,6 @@
 
 -(void)initialControlUnit
 {
-    isVideos = NO;
     isEndPlay = NO;
     _scrolView = [[UIScrollView alloc]init];
     _scrolView.pagingEnabled  = YES;

@@ -42,10 +42,10 @@
     self.video.delegate = self;
     if (self.type == TSBANNERTYPEIMAGE) {
         self.title = @"纯图片详情";
-        [self.video setWithIsVideo:NO andDataArray:[self imgArray]];
+        [self.video setWithIsVideo:TSDETAILTYPEIMAGE andDataArray:[self imgArray]];
     }else{
         self.title = @"视频图片详情";
-        [self.video setWithIsVideo:YES andDataArray:[self bannerArray]];
+        [self.video setWithIsVideo:TSDETAILTYPEVIDEO andDataArray:[self bannerArray]];
     }
     [self.view addSubview:self.video];
 }

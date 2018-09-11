@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class TSVideoPlayback;
+typedef enum : NSUInteger {
+    TSDETAILTYPEVIDEO,//视屏
+    TSDETAILTYPEIMAGE,//图片
+} TSDETAILTYPE;
 
 @protocol TSVideoPlaybackDelegate <NSObject>
 
@@ -19,12 +23,13 @@
 @interface TSVideoPlayback : UIView
 
 @property (nonatomic,weak) id<TSVideoPlaybackDelegate> delegate;
+@property (nonatomic,assign) TSDETAILTYPE type;
 
 /*
  * isVideo  是否带视屏链接
  * array    数据
  */
--(void)setWithIsVideo:(BOOL)isVideo andDataArray:(NSArray *)array;
+-(void)setWithIsVideo:(TSDETAILTYPE)type andDataArray:(NSArray *)array;
 
 //清除缓存（必须写）
 -(void)clearCache;
